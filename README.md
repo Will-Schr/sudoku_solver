@@ -1,9 +1,5 @@
 # Sudoku Solver
 
-## FAQ
-### Will this work on all Operating Systems?
-Yes, this will work on Windows, Linux, and Mac!
+This is a sudoku solver written in python; designed to solve sudoku boards similarly to the method humans use, instead of the pure brute force reasoning many sudoku solvers use.
 
-
-### Why use this instead of other Sudoku Solver implementations?
-This has the distinction of using human-solvable algorithms instead of relying on computer-solvable algorithms such as backtracking.
+This is based off the [sudoku capstone project](https://github.com/Will-Schr/sudoku_capstone) [@huekylieu](https://github.com/huekylieu) and I worked on
