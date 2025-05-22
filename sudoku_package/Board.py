@@ -489,6 +489,68 @@ class board:
                                             box_rep.pos = [second_val,first_val]
         return self.fill_squares()
 
+    def hidden_sets_h(self):
+        """
+        Finds hidden sets and adjusts pos values accordingly
+
+        Returns:
+            (bool): result of fill_squares after the scanning completes
+        """
+
+        for row in self.table:
+
+            # Row legend used to track occurences of each number to find similarities
+            row_legend = {}
+
+            # Fill row legend
+            for i, box in enumerate(row):
+                if box.pos:
+                    for value in box.pos:
+                        if value in row_legend:
+                            row_legend[value].append(i)
+                        else:
+                            row_legend[value] = [i]
+
+            for value in row_legend.values():
+
+                # Number of matches needed to confirm hidden set
+                needed_matches = len(value)
+
+                # Track number of currently existing matches so iteration can be canceled
+                exist_matches = 0
+
+                # Numbers in current set
+                hidden_set = []
+
+                # Store index in row of hidden sets
+                set_locations = []
+
+                # Iterate through row legend to check for hidden sets
+                # This is done by seeing if the number of positions match the number of values in the set
+                # i.e. [1,2,3,7], [1,2,3,4], [1,2,3,8] -> {1: [0,1,2], 2: [0,1,2], 3: [0,1,2], 4:{1}, 7:{0}, 8:{2}}
+                # Since 1,2,3 have the same positions; and the number of occurences match the length they are a hidden set
+
+                for number, locations in row_legend.items():
+                    if locations == value:
+
+                        exist_matches += 1
+                        if exist_matches > needed_matches:
+                            break
+
+                        hidden_set.append(number)
+                        set_locations = locations
+
+                # If there does not exist a hidden set, continue to next possible set
+                if exist_matches > needed_matches:
+                    continue
+
+                # Hidden set exists!
+                if exist_matches == needed_matches:
+                    for index in set_locations:
+                        row[index].pos = hidden_set
+
+        return self.fill_squares()
+
     def solve(self):
         """
         Solves board using combination of functions
