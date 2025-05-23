@@ -43,5 +43,56 @@ class Test_hidden_sets_h(unittest.TestCase):
         test_row.hidden_sets_h()
         self.assertEqual(test_row.test_out_table(),solution_row.test_out_table())
 
+class Test_hidden_sets_v(unittest.TestCase):
+    """Tests hidden_sets_v finding hidden sets"""
+
+    def test_hidden_set_1(self):
+        """Test 1 of hidden set vertical"""
+        test_board = board(([square(pos_in=[1,3,5]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,5,6,7]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[1,3,7]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()]))
+        solution_board = board(([square(pos_in=[1,3]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(5),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[1,3]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,6,7,8,9]),square(),square(),square(),square(),square(),square(),square(),square()]))
+        test_board.naked_sets_v()
+        solution_board.basic_scans()
+        self.assertEqual(test_board.test_out_table(),solution_board.test_out_table())
+
+    def test_hidden_set_2(self):
+        """Test 2 of hidden set vertical"""
+        test_board = board(([square(1),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(3),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,5,6,7,8]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(9),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,8]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,5,6,7,8]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,5,6,7,8]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,8]),square(),square(),square(),square(),square(),square(),square(),square()]))
+        solution_board = board(([square(1),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(3),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(2),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[5,6,7]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(9),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,8]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[5,6,7]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[5,6,7]),square(),square(),square(),square(),square(),square(),square(),square()],
+                   [square(pos_in=[2,4,8]),square(),square(),square(),square(),square(),square(),square(),square()]))
+        test_board.naked_sets_v()
+        solution_board.basic_scans()
+        self.assertEqual(test_board.test_out_table(),solution_board.test_out_table())
+
 if __name__== '__main__':
     unittest.main()
