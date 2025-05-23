@@ -558,7 +558,7 @@ class board:
         for _ in range(100):
             self.basic_scans()
             self.naked_set_scan()
-            self.hidden_pairs_h()
+            self.hidden_sets_h()
             self.is_solved()
             if self.solved:
                 return
