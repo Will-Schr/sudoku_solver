@@ -11,43 +11,60 @@ from sudoku_package.Board import board
 from sudoku_package.Square import square
 
 class Test_hidden_doubles(unittest.TestCase):
-    """Tests matches_h finding hidden doubles"""
+    """
+    Tests matches_h finding hidden doubles
+    """
+    
     def test_hidden_double_1(self):
-        """Test 1 of hidden double"""
+        """
+        Test 1 of hidden double
+        """
         test_row = board([[square(pos_in=[1,2,3]), square(pos_in=[1,2,3]), square(pos_in=[3,4]), square(pos_in=[3,5])]])
         solution_row = board([[square(pos_in=[1,2]), square(pos_in=[1,2]), square(pos_in=[3,4]), square(pos_in=[3,5])]])
         test_row.hidden_pairs_h()
         self.assertEqual(test_row.test_out_table(),solution_row.test_out_table())
 
     def test_hidden_double_2(self):
-        """Test 2 of hidden double"""
+        """
+        Test 2 of hidden double
+        """
         test_row = board([[square(pos_in=[1,3,5]), square(pos_in=[5,6,7]), square(pos_in=[1,3,7]), square(pos_in=[8,9])]])
         solution_row = board([[square(pos_in=[1,3]), square(pos_in=[5,6,7]), square(pos_in=[1,3]), square(pos_in=[8,9])]])
         test_row.hidden_pairs_h()
         self.assertEqual(test_row.test_out_table(),solution_row.test_out_table())
 
 class Test_hidden_sets_h(unittest.TestCase):
-    """Tests hidden_sets_h finding hidden doubles"""
+    """
+    Tests hidden_sets_h finding hidden doubles
+    """
 
     def test_hidden_double_1(self):
-        """Test 1 of hidden double"""
+        """
+        Test 1 of hidden double
+        """
         test_row = board([[square(pos_in=[1,2,3]), square(pos_in=[1,2,3]), square(pos_in=[3,4,8]), square(pos_in=[3,5,9])]])
         solution_row = board([[square(pos_in=[1,2]), square(pos_in=[1,2]), square(pos_in=[3,4,8]), square(pos_in=[3,5,9])]])
         test_row.hidden_sets_h()
         self.assertEqual(test_row.test_out_table(),solution_row.test_out_table())
 
     def test_hidden_double_2(self):
-        """Test 2 of hidden double"""
+        """
+        Test 2 of hidden double
+        """
         test_row = board([[square(pos_in=[1,3,5]), square(pos_in=[2,4,5,6,7]), square(pos_in=[1,3,7]), square(pos_in=[2,4,6,7,8,9])]])
         solution_row = board([[square(pos_in=[1,3]), square(pos_in=[2,4,5,6,7]), square(pos_in=[1,3]), square(pos_in=[2,4,6,7,8,9])]])
         test_row.hidden_sets_h()
         self.assertEqual(test_row.test_out_table(),solution_row.test_out_table())
 
 class Test_hidden_sets_v(unittest.TestCase):
-    """Tests hidden_sets_v finding hidden sets"""
+    """
+    Tests hidden_sets_v finding hidden sets
+    """
 
     def test_hidden_set_1(self):
-        """Test 1 of hidden set vertical"""
+        """
+        Test 1 of hidden set vertical
+        """
         test_board = board(([square(pos_in=[1,3,5]),square(),square(),square(),square(),square(),square(),square(),square()],
                    [square(pos_in=[2,4,5,6,7]),square(),square(),square(),square(),square(),square(),square(),square()],
                    [square(pos_in=[1,3,7]),square(),square(),square(),square(),square(),square(),square(),square()],
@@ -71,7 +88,9 @@ class Test_hidden_sets_v(unittest.TestCase):
         self.assertEqual(test_board.test_out_table(),solution_board.test_out_table())
 
     def test_hidden_set_2(self):
-        """Test 2 of hidden set vertical"""
+        """
+        Test 2 of hidden set vertical
+        """
         test_board = board(([square(1),square(),square(),square(),square(),square(),square(),square(),square()],
                    [square(3),square(),square(),square(),square(),square(),square(),square(),square()],
                    [square(pos_in=[2]),square(),square(),square(),square(),square(),square(),square(),square()],
